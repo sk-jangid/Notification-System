@@ -1,0 +1,4 @@
+{
+	"message":"Hi {0}. find your orderId {1}, and your order Status is {2}",
+	"variables":["Name","orderId","status"]
+}

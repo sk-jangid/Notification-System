@@ -1,0 +1,4 @@
+{
+	"message":"Hi {0}. find your payId {1}, and please try to send payment of {2} as early as possible untill {3}",
+	"variables":["Name","payId","amount","dueDate"]
+}
