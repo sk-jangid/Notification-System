@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		  include = JsonTypeInfo.As.PROPERTY, 
 		  property = "type")
 		@JsonSubTypes({ 
-		  @Type(value = textMessage2.class, name = "text"), 
+		  @Type(value = textMessage.class, name = "text"), 
 		  //@Type(value = Truck.class, name = "truck") 
 		})
 public abstract class Message {
