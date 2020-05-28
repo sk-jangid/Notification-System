@@ -16,12 +16,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Service
 public class sendService implements APIConfiguration {
-
+	static final ExceptionConverter EXCEPTION_CONVERTER = new ExceptionConverter();
 	public sendService() { 
 	       // this.accessToken = "token " + System.getenv("ACCESS_TOKEN");
 	    }
 	// Method to send Message
-	 public static LINEMessage send(LINEMessage message) throws IOException {
+	 public static Response<responseBody> send(LINEMessage jsonDataString) throws IOException {
+		 
 		 Retrofit retrofit = new Retrofit.Builder()
 	        		.baseUrl(API_BASE_URL)
 	        		.addConverterFactory(GsonConverterFactory.create())
@@ -30,25 +31,16 @@ public class sendService implements APIConfiguration {
 		 //messagesend is the service which has all GET and POST methods
 		// call the API to Push Message
 	     messagesend ser = retrofit.create(messagesend.class);
-	     //Call<responseBody> retrofitCall = ser.pushMessage(message);
-	     
-	     // call the API to get Message Quota
-	     Call<MessageQuotaResponse> retrofitCall=ser.getMessageQuota();
-	     
+	     Call<responseBody> retrofitCall = ser.pushMessage(jsonDataString);
+     
 	     //Get a response after executing request
-	     Response<MessageQuotaResponse> response = retrofitCall.execute();
+	     Response<responseBody> response = retrofitCall.execute();
+	     if(response.isSuccessful()) {
+	     }
 	     
-	     /*
-	      if (!response.isSuccessful()) {
-	           throw new IOException(response.errorBody() != null
-	                    ? response.errorBody().string() : "Unknown error");
-	      }*/
-	       
-	      //System.out.println(API_BASE_URL);
-	      System.out.println( response.code()+"  "+response.isSuccessful());	
-	      return message;		
-	    }
-	 
+	     return response;
+	    
+	 }
 	 
 	
 }

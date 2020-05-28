@@ -1,11 +1,10 @@
 package com.Amazon.models;
 
 import java.util.Collections;
-
-
-
 import java.util.List;
+
 import com.Amazon.models.Message.Message;
+
 import lombok.AllArgsConstructor;
 import lombok.Value;
 

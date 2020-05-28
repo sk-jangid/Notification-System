@@ -11,12 +11,18 @@ import lombok.Value;
 @Value
 public class ErrorDetail {
     
-    String message;
-    String property;
+    public String message;
+    public String property;
     public ErrorDetail(
             @JsonProperty("message") String message,
             @JsonProperty("property") String property) {
         this.message = message;
         this.property = property;
+    }
+   public  String getMessage() {
+    	return message;
+    }
+    public String getProperty() {
+    	return property;
     }
 }

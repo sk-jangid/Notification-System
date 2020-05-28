@@ -23,8 +23,12 @@ public class ErrorResponse {
         this.message = message;
         this.details = details != null ? details : Collections.emptyList();
     }
-	public String getMessage() {
+	public List<ErrorDetail> getMessage() {
 		// TODO Auto-generated method stub
-		return message;
+		return details;
+	}
+	public List<ErrorDetail> getDetails() {
+		// TODO Auto-generated method stub
+		return details;
 	}
 }

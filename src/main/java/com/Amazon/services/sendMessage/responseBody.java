@@ -19,6 +19,7 @@ import lombok.Value;
 @Value
 @Builder
 @JsonDeserialize(builder = responseBodyBuilder.class)
+public
 class responseBody {
     @JsonPOJOBuilder(withPrefix = "")
     public static class responseBodyBuilder {
@@ -32,4 +33,5 @@ class responseBody {
     ApiResponse withRequestId(final String requestId) {
         return new ApiResponse(requestId, message, details);
     }
+
 }

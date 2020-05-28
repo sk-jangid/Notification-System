@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Amazon.models.LINEMessage;
 import com.Amazon.models.useCases.usecase;
 import com.Amazon.services.servicehandler;
+import com.Amazon.services.sendMessage.responseBody;
+
+import retrofit2.Response;
 @RestController
 @RequestMapping
 public class useCaseController {
 	
 	
 	@PostMapping(value="notificationService")
-	public LINEMessage controller(@RequestBody String input) throws ParseException, IOException   {
+	public Response<responseBody> controller(@RequestBody String input) throws ParseException, IOException   {
 		 // Currently taking a string as input and then converting it to object of class useCase
 		
 		

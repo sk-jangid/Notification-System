@@ -12,15 +12,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		  @Type(value = textMessage2.class, name = "text"), 
 		  //@Type(value = Truck.class, name = "truck") 
 		})
-public abstract class Message {
+public abstract class Message2 {
 
 	protected String type;
     
-	public Message(String type) {
+	public Message2(String type) {
         this.type=type;
     }
 
-	public Message() {
+	public Message2() {
 		super();
 	}
 	

@@ -1,14 +1,18 @@
 package com.Amazon.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.Amazon.models.LINEMessage;
 import com.Amazon.models.Message.Message;
 import com.Amazon.models.Message.textMessage;
-
+import com.Amazon.services.sendMessage.responseBody;
 import com.Amazon.services.sendMessage.sendService;
+
+import retrofit2.Response;
 
 
 
@@ -16,20 +20,21 @@ import com.Amazon.services.sendMessage.sendService;
 @Service
 public class LINEMessageClient {
 	
-	static LINEMessage sendMessage(String message,String to) throws IOException  {
+	static Response<responseBody> sendMessage(List<String> message,String to) throws IOException  {
 		
 		// Message type is text
-		Message textMessage=new textMessage(message);
-		//System.out.println(((textMessage)textMessage).text);
+		List<Message> textMessage=new ArrayList<>();
+		/*
+		 * Max Limit is to send 5 Messages
+		 */
+		for(int i=0;i<message.size();i++) {
+			textMessage.add(new textMessage(message.get(i)));
+		}
+
 		LINEMessage APIMessage=new LINEMessage(to,textMessage);
-		//System.out.println(m.messages.size());
 		return sendService.send(APIMessage);
-		//return m;
-		
-		
-		
-		
-		
+	
+	
 		
 	}
 
