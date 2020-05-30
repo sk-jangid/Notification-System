@@ -20,6 +20,7 @@ public abstract class LineMessagingException extends Exception {
        super(list + (errorResponse != null ? " : " + errorResponse : ""), cause);
     }
     LineMessagingException(final String message, final ErrorResponse errorResponse,final Throwable cause) {
+    	
         super(message + (errorResponse != null ? " : " + errorResponse : ""), cause);
      }
 }

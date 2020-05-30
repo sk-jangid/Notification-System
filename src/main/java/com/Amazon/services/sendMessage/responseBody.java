@@ -4,10 +4,12 @@ import static java.util.Collections.emptyList;
 
 import java.util.List;
 
+import com.Amazon.models.error.ErrorDetail;
 import com.Amazon.services.sendMessage.responseBody.responseBodyBuilder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+//import com.Amazon.model.response.BotApiResponse;
 import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Value;
@@ -19,19 +21,24 @@ import lombok.Value;
 @Value
 @Builder
 @JsonDeserialize(builder = responseBodyBuilder.class)
-public
 class responseBody {
     @JsonPOJOBuilder(withPrefix = "")
     public static class responseBodyBuilder {
         // filled by lombok.
     }
 
-    public String message;
+    String message;
     @Default
-    public List<String> details = emptyList();
+    List<ErrorDetail> details = emptyList();
 
-    ApiResponse withRequestId(final String requestId) {
-        return new ApiResponse(requestId, message, details);
-    }
+   public responseBody(String message,List<ErrorDetail> details) {
+		super();
+		this.message = message;
+		this.details = details;
+	}
+  
+   
 
+	
+	
 }

@@ -3,14 +3,21 @@ package com.Amazon.services;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.stereotype.Service;
 
 import com.Amazon.models.LINEMessage;
 import com.Amazon.models.Message.Message;
 import com.Amazon.models.Message.textMessage;
-import com.Amazon.services.sendMessage.responseBody;
+import com.Amazon.models.error.ErrorResponse;
+import com.Amazon.models.responses.LINEResponse;
+import com.Amazon.services.sendMessage.ApiResponse;
+import com.Amazon.services.sendMessage.LINEClient;
+//import com.Amazon.services.sendMessage.responseBody;
 import com.Amazon.services.sendMessage.sendService;
+import com.fasterxml.uuid.Generators;
 
 import retrofit2.Response;
 
@@ -20,7 +27,7 @@ import retrofit2.Response;
 @Service
 public class LINEMessageClient {
 	
-	static Response<responseBody> sendMessage(List<String> message,String to) throws IOException  {
+	static LINEResponse sendMessage(List<String> message,String to) throws IOException, InterruptedException, ExecutionException  {
 		
 		// Message type is text
 		List<Message> textMessage=new ArrayList<>();
@@ -29,10 +36,37 @@ public class LINEMessageClient {
 		 */
 		for(int i=0;i<message.size();i++) {
 			textMessage.add(new textMessage(message.get(i)));
+			//System.out.println(message.get(i));
 		}
 
 		LINEMessage APIMessage=new LINEMessage(to,textMessage);
-		return sendService.send(APIMessage);
+		sendService sendingClient= new LINEClient().channelAccessToken("MEGhysNQpGvlM3aMs+g9FaQJcOA0oDD2zKxbUU6O933/QTqiB0zBITtUyjjVHSDY42CD76e/0BjibGyZR5iYZynmbcX042lQqy7eP2YApioEFfTExQypkuGECIZ4ayba54Y9PaTrCOIvRbvixAdeoQdB04t89/1O/w1cDnyilFU=").build();
+		String retryKey = Generators.timeBasedGenerator().generate().toString();
+		int  Response=sendingClient.send(APIMessage,retryKey);
+		System.out.println(Response);
+		switch(Response) {
+			case(200): return new LINEResponse(true);
+			case(400): return new LINEResponse(false,"Unauthorized customer. LINE Id not valid for the Customers");
+			case(401): return null;
+			case(403): return new LINEResponse(false,"Unauthorized customer. LINE Id not valid for the Customer");
+			case(429): return null;
+			case(409): return null;
+			case(500): return null;
+			case(501): 
+				int retryResponse=sendingClient.send(APIMessage, retryKey);
+				if(retryResponse==429) {
+					return new LINEResponse(true);
+				}
+		
+				return null;
+		
+		
+		}
+		
+		
+		
+		return null;
+		//return sendService.send(APIMessage);
 	
 	
 		

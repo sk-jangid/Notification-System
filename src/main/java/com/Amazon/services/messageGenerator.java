@@ -31,11 +31,12 @@ public class messageGenerator {
 		
 		//Format the Message According to the Message templates
 		MessageFormat formatter = new MessageFormat(template.getString("message"), Locale.UK);
-		Object[] data = new Object[template.getJSONArray("variables").length()] ;
 		org.json.JSONArray messageTemplateVariables=template.getJSONArray("variables");
+		Object[] data = new Object[messageTemplateVariables.length()] ;
 		String variable="";
 		 for(int i=0; i < messageTemplateVariables.length(); i++) {
 			variable=messageTemplateVariables.getString(i);
+			//System.out.println(messageTemplateVariables.getString(i));
 			if(customerInformation.has(variable)) {
 			data[i]=(customerInformation.getString(messageTemplateVariables.getString(i)));
 			}else if(input.getEventDetails().has(variable)){

@@ -7,6 +7,7 @@ import com.Amazon.models.LINEMessage;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -19,11 +20,10 @@ import retrofit2.http.POST;
 public interface messagesend {
 
 	@Headers({
-	"Content-Type:application/json",
-	"Authorization:Bearer hTSkfFzESX5HgSPLiVNjpicqc9ZRIdl5iqbx4TIHiSYOdysGDXxqYz4fvmzZgEonW/fr9CtkE6qSLx6NOP2t/ln9h9v8FDbD43g8u0zxmBmg7zLRg7eYwTQELS7Gwe+eyuQooepxmaj1vFBypM+uBQdB04t89/1O/w1cDnyilFU="
+	"Content-Type:application/json"
 	})
-	public @POST("v2/bot/message/push")
-    Call<responseBody> pushMessage(@Body LINEMessage message);
+	public @POST("v2/bot/message/push/")
+    Call<responseBody> pushMessage(@Body LINEMessage message,@Header("X-Line-Retry-Key") String retryKey);
 	
 	/*public @POST("/1g8n7J3gYOfprGjGy3Zy")
     Call<responseBody> pushMessage(@Body LINEMessage message);*/

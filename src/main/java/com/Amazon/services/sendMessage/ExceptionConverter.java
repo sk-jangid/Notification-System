@@ -13,7 +13,7 @@ import com.Amazon.services.sendMessage.exception.BadRequestException;
 
 import com.Amazon.services.sendMessage.exception.GeneralLineMessagingException;
 import com.Amazon.services.sendMessage.exception.LineMessagingException;
-
+import com.Amazon.services.sendMessage.exception.UnauthorizedException;
 import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
@@ -39,20 +39,30 @@ class ExceptionConverter implements Function<Response<?>, LineMessagingException
     private static LineMessagingException applyInternal(final String requestId, final Response<?> response)
             throws IOException {
         final int code = response.code();
-        final ResponseBody responseBody = response.errorBody();
-        System.out.println(responseBody);
+        final ResponseBody ApiResponse = response.errorBody();
+        ///System.out.println(responseBody);
         final ErrorResponse errorResponse = OBJECT_READER
                 .with(new InjectableValues.Std(singletonMap("requestId", requestId)))
-                .readValue(responseBody.byteStream());
+                .readValue(ApiResponse.byteStream());
 
         switch (code) {
             case 400:
             	for(int i=0;i<errorResponse.getDetails().size();i++) {
             		 System.out.println((errorResponse.getDetails().get(i)).getMessage() + " :"+ (errorResponse.getDetails().get(i)).getProperty());
             	}
-            	System.out.println(errorResponse.getDetails());
+            	//System.out.println(errorResponse.getMessage());
                 return new BadRequestException(
                         errorResponse.getMessage(), errorResponse);
+            case 401:
+            	for(int i=0;i<errorResponse.getDetails().size();i++) {
+           		 System.out.println((errorResponse.getDetails().get(i)).getMessage() + " :"+ (errorResponse.getDetails().get(i)).getProperty());
+           	}
+            	//System.out.println(errorResponse.getMessage());
+
+            	System.out.println("skkj");
+            	return new UnauthorizedException(
+                        errorResponse.getMessage(), errorResponse);
+            	
         }
 
         return new GeneralLineMessagingException(errorResponse.getMessage(), errorResponse, null);
