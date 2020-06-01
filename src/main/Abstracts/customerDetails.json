@@ -1,12 +1,36 @@
 {
-	"customerId":"Gulkanda1",
-	"Name":"Golu",
-	"LINE": {
-	"UserId":"U7396e7475cb94516395124ba84780a9c"
+	"Amazon1":{
+		"Name":"Shubham Jangid",
+		"LINE": {
+		"UserId":"U7396e7475cb94516395124ba84780a9c"
+		},
+		"Alexa":{
+		
+		
+		}
 	},
-	"Alexa":{
+	"Amazon2":{
+		"Name":"skj",
+		"LINE": {
+		"UserId":"U7396e7475cb94516395124ba84780a9c"
+		},
+		"Alexa":{
+		
+		
+		}
+	
+	
+	},
+	"Amazon3":{
+		"Name":"Rishu",
+		"LINE": {
+		"UserId":"U4c53507da9b411274bcdbce515d969e0"
+		},
+		"Alexa":{
+		
+		
+		}
 	
 	
 	}
-	
 }

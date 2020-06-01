@@ -19,7 +19,7 @@ public class customerDetails {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return customerDetails;
+		return customerDetails.getJSONObject(customerId);
 	}
 
 }
