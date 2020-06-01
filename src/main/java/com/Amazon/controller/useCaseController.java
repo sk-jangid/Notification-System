@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,8 @@ import com.Amazon.services.sendMessage.ApiResponse;
 @RestController
 @RequestMapping
 public class useCaseController {
-	
+	@Autowired
+	servicehandler service;
 	
 	@PostMapping(value="notificationService")
 	public LINEResponse controller(@RequestBody String input) throws ParseException, IOException, JSONException, InterruptedException, ExecutionException   {
@@ -35,7 +37,9 @@ public class useCaseController {
 		usecase inputConvertedToObject= new usecase(event,customerId,eventDetails);
      
 		// execute service to send the Message
-		return  servicehandler.execute(inputConvertedToObject);
+		//System.out.println(s);
+		return  service.execute(inputConvertedToObject);
+		//return null;
 		
 	}
 	

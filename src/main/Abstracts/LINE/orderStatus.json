@@ -1,4 +1,4 @@
 {
 	"message":"Hi {0}",
-	"variables":["customerName"]
+	"variables":["Name"]
 }

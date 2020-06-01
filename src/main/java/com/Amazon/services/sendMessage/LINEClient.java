@@ -26,14 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LINEClient {
    // private static final ObjectMapper objectMapper = modelObjectMapper.getNewObjectMapper();
 	
-  /*  @PackagePrivate
+    //@PackagePrivate
+	public
     LINEClient() {
-    }*/
+    }
     
     
-    public LINEClient() {
-		super();
-	}
+   
 
 
 	private URI apiEndPoint = APIConfiguration.API_BASE_URL;
@@ -125,6 +124,7 @@ public class LINEClient {
 
     
     public sendService build() {
+    	System.out.println("skj");
     	return new sendService(buildRetrofitIface(apiEndPoint, messagesend.class));
     }
 

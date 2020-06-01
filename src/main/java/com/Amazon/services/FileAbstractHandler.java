@@ -20,9 +20,11 @@ public class FileAbstractHandler {
 	
 		//create a Parser to Parse a file
 		JSONParser parser = new JSONParser(new FileReader(path));
+		 System.out.println("skj");
 		 try {
 	         Object obj = parser.parse();
 	         @SuppressWarnings("unchecked")
+	        
 	         HashMap<String, String> jsonObject = (HashMap<String, String>)obj;
 	         JSONObject json = new JSONObject(jsonObject);
 	         //return the Object of the JSON Object got from File

@@ -3,8 +3,10 @@ package com.Amazon.notificationSystem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+
+
 @SpringBootApplication
-@ComponentScan({"com.Amazon.controller"})
+@ComponentScan({"com.Amazon.controller","com.Amazon.services","com.Amazon.services.sendMessage"})
 public class NotificationSystemApplication {
 
 	public static void main(String[] args) {
