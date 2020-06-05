@@ -19,3 +19,6 @@ Input is of the type
 
 	}
 }
+
+For retrieving your user ID [click here](https://get-profile.herokuapp.com/)
+NOTE: We are not storing any information. This is just for testing purpose to get you know about your User Id.
