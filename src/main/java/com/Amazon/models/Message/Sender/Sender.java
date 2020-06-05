@@ -18,8 +18,6 @@ public class Sender {
     }
 	public Sender() {
 		super();
-		this.name="Rishu";
-		this.iconUrl=URI.create("https://www.facebook.com/photo?fbid=1427547344060488&set=a.334280340053866");
 	}
 	public Sender(String name, URI iconUrl) {
 		super();

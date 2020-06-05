@@ -16,7 +16,7 @@ public class textMessage extends Message{
 	    public textMessage(final String text) {
 	    	super("text");
 	        this.text=text;
-	        this.sender=new Sender();
+	        this.sender=null;
 	        
 	    }
 		
