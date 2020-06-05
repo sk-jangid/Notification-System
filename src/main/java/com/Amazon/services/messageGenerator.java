@@ -2,6 +2,8 @@ package com.Amazon.services;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.tomcat.util.json.ParseException;
@@ -17,7 +19,7 @@ public class messageGenerator {
 
 
 
-	public static String generate(usecase input, org.json.JSONObject customerInformation) throws ParseException {
+	public List<String> generate(usecase input, org.json.JSONObject customerInformation) throws ParseException {
 		
 		
 		// template is the JSONObject to get template of that Message
@@ -27,6 +29,8 @@ public class messageGenerator {
 			template = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\LINE\\"+input.getEvent()+".json");
 		} catch (IOException e) {
 			e.printStackTrace();
+			return Collections.emptyList();
+			
 		}
 		
 		//Format the Message According to the Message templates
@@ -36,19 +40,22 @@ public class messageGenerator {
 		String variable="";
 		 for(int i=0; i < messageTemplateVariables.length(); i++) {
 			variable=messageTemplateVariables.getString(i);
-			//System.out.println(messageTemplateVariables.getString(i));
+			
 			if(customerInformation.has(variable)) {
 			data[i]=(customerInformation.getString(messageTemplateVariables.getString(i)));
+			
 			}else if(input.getEventDetails().has(variable)){
 				data[i]=(input.getEventDetails().getString(messageTemplateVariables.getString(i)));
+				
 			}else {
-				return "error";
+				// error with the Request some fields that are to be changed are missing in input Request
+				return Collections.emptyList();
 			}
 	      }
 		 
 		 // return generated Message
 		 String message = formatter.format(data);
 		
-		return message;
+		return Collections.singletonList(message);
 	}
 }

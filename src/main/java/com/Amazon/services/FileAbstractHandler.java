@@ -20,7 +20,6 @@ public class FileAbstractHandler {
 	
 		//create a Parser to Parse a file
 		JSONParser parser = new JSONParser(new FileReader(path));
-		 System.out.println("skj");
 		 try {
 	         Object obj = parser.parse();
 	         @SuppressWarnings("unchecked")

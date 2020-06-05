@@ -19,14 +19,14 @@ import okhttp3.Request;
 //import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-//import retrofit2.converter.jackson.JacksonConverterFactory;
+
 
 @ToString
 @Accessors(fluent = true)
 public class LINEClient {
-   // private static final ObjectMapper objectMapper = modelObjectMapper.getNewObjectMapper();
+
 	
-    //@PackagePrivate
+    @PackagePrivate
 	public
     LINEClient() {
     }
@@ -38,7 +38,6 @@ public class LINEClient {
 	private URI apiEndPoint = APIConfiguration.API_BASE_URL;
 
 
-    // We can remove this after delete `setApiEndPoint(String apiEndPoint)`.
     public LINEClient apiEndPoint(URI apiEndPoint) {
         this.apiEndPoint = requireNonNull(apiEndPoint, "apiEndPoint");
         return this;
@@ -51,18 +50,14 @@ public class LINEClient {
     @Setter
     private long writeTimeout = APIConfiguration.WRITE_TIMEOUT_MILLIS;
     @Setter
-    private String channelAccessToken;
+    private String channelAccessToken=APIConfiguration.CHANNEL_ACCESS_TOKEN;
     @Setter
     private Retrofit.Builder retrofitBuilder;
     
     private OkHttpClient.Builder okHttpClientBuilder;
 
 
-    public LINEClient channelAccessToken(String channelAccessToken) {
-        this.channelAccessToken=channelAccessToken;
-        return this;
-    }
-
+    
    
     public LINEClient okHttpClientBuilder(final @NonNull OkHttpClient.Builder okHttpClientBuilder) {
         this.okHttpClientBuilder = okHttpClientBuilder;
@@ -70,7 +65,7 @@ public class LINEClient {
     }
 
     
-    <T> T buildRetrofitIface(URI apiEndPoint, Class<T> retrofitIFace) {
+    <T> T buildRetrofitInterface(URI apiEndPoint, Class<T> retrofitIFace) {
         if (okHttpClientBuilder == null) {
             okHttpClientBuilder = new OkHttpClient.Builder();
         }
@@ -124,8 +119,7 @@ public class LINEClient {
 
     
     public sendService build() {
-    	System.out.println("skj");
-    	return new sendService(buildRetrofitIface(apiEndPoint, messagesend.class));
+    	return new sendService(buildRetrofitInterface(apiEndPoint, messagesend.class));
     }
 
     

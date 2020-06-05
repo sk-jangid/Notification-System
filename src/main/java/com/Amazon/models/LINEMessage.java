@@ -17,10 +17,10 @@ public class LINEMessage {
     public String to;
     public List<Message> messages;
     public boolean notificationDisabled;
-    public LINEMessage(String to, Message message) {
+    public LINEMessage(String to, Message message,boolean notificationDisabled) {
         this.to=to;
         this.messages=Collections.singletonList(message);
-        this.notificationDisabled= false;
+        this.notificationDisabled= notificationDisabled;
     }
 
     public LINEMessage(String to, List<Message> messages) {
@@ -29,9 +29,5 @@ public class LINEMessage {
          this.notificationDisabled= false;
     }
 
-    public LINEMessage(String to, Message message, boolean notificationDisabled) {
-    	 this.to=to;
-         this.messages=Collections.singletonList(message);
-         this.notificationDisabled= notificationDisabled;
-    }
+   
 }
