@@ -1,8 +1,8 @@
 {
 	"Amazon1":{
-		"Name":"Shubham Jangid",
+		"Name":"abc kumar",
 		"LINE": {
-		"UserId":"U7396e7475cb94516395124ba84780a9c"
+		"UserId":"User Id of the User"
 		},
 		"Alexa":{
 		
@@ -10,9 +10,9 @@
 		}
 	},
 	"Amazon2":{
-		"Name":"skj",
+		"Name":"xyz singh",
 		"LINE": {
-		"UserId":"U7396e7475cb94516395124ba84780a9c"
+		"UserId":"UserId of the User"
 		},
 		"Alexa":{
 		
@@ -22,9 +22,9 @@
 	
 	},
 	"Amazon3":{
-		"Name":"Rishu",
+		"Name":"pqr student",
 		"LINE": {
-		"UserId":"U4c53507da9b411274bcdbce515d969e0"
+		"UserId":"UserId of the User"
 		},
 		"Alexa":{
 		
