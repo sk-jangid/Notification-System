@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-
-import com.Amazon.models.useCases.usecase;
 
 
 // Service to generate Message from templates
@@ -18,15 +18,14 @@ import com.Amazon.models.useCases.usecase;
 public class messageGenerator {
 
 
-
-	public List<String> generate(usecase input, org.json.JSONObject customerInformation) throws ParseException {
+	public List<String> generate(JSONObject eventDetails ,JSONObject customerInformation,String commMethod,String eventType) throws ParseException {
 		
 		
 		// template is the JSONObject to get template of that Message
-		org.json.JSONObject template = null;
+		JSONObject template = null;
 		// Get the template Message file
 		try {
-			template = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\LINE\\"+input.getEvent()+".json");
+			template = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\"+commMethod+"\\"+eventType+".json");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return Collections.emptyList();
@@ -35,7 +34,7 @@ public class messageGenerator {
 		
 		//Format the Message According to the Message templates
 		MessageFormat formatter = new MessageFormat(template.getString("message"), Locale.UK);
-		org.json.JSONArray messageTemplateVariables=template.getJSONArray("variables");
+		JSONArray messageTemplateVariables=template.getJSONArray("variables");
 		Object[] data = new Object[messageTemplateVariables.length()] ;
 		String variable="";
 		 for(int i=0; i < messageTemplateVariables.length(); i++) {
@@ -44,8 +43,8 @@ public class messageGenerator {
 			if(customerInformation.has(variable)) {
 			data[i]=(customerInformation.getString(messageTemplateVariables.getString(i)));
 			
-			}else if(input.getEventDetails().has(variable)){
-				data[i]=(input.getEventDetails().getString(messageTemplateVariables.getString(i)));
+			}else if(eventDetails.has(variable)){
+				data[i]=(eventDetails.getString(messageTemplateVariables.getString(i)));
 				
 			}else {
 				// error with the Request some fields that are to be changed are missing in input Request

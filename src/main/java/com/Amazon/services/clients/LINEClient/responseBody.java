@@ -1,4 +1,4 @@
-package com.Amazon.services.sendMessage;
+package com.Amazon.services.clients.LINEClient;
 
 public
 class responseBody {

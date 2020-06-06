@@ -1,4 +1,6 @@
-package com.Amazon.services.sendMessage;
+package com.Amazon.services.clients.LINEClient;
+
+
 
 import java.io.IOException;
 
@@ -11,12 +13,12 @@ import retrofit2.Response;
  * make Synchronise Requests
  */
 
-public class sendService  {
-	private final  messagesend service;
+public class sendServiceWorking  {
+	private final sendService service;
 	public int responseCode=0;	
 
-	public sendService(messagesend buildRetrofitInterface) {
-		this.service=buildRetrofitInterface;
+	public sendServiceWorking(sendService service ){
+		this.service=service;
 	}
 
 

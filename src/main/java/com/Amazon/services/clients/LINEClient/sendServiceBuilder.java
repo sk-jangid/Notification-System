@@ -1,6 +1,4 @@
-package com.Amazon.services.sendMessage;
-
-
+package com.Amazon.services.clients.LINEClient;
 
 import static java.util.Objects.requireNonNull;
 
@@ -23,25 +21,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @ToString
 @Accessors(fluent = true)
-public class LINEClient {
+public class sendServiceBuilder {
 
 	
     @PackagePrivate
 	public
-    LINEClient() {
+	sendServiceBuilder() {
     }
     
-    
-   
-
-
 	private URI apiEndPoint = APIConfiguration.API_BASE_URL;
-
-
-    public LINEClient apiEndPoint(URI apiEndPoint) {
+	/*
+    public sendServiceBuilder apiEndPoint(URI apiEndPoint) {
         this.apiEndPoint = requireNonNull(apiEndPoint, "apiEndPoint");
         return this;
-    }
+    }*/
 
     @Setter
     private long connectTimeout = APIConfiguration.CONNECT_TIMEOUT_MILLIS;
@@ -59,7 +52,7 @@ public class LINEClient {
 
     
    
-    public LINEClient okHttpClientBuilder(final @NonNull OkHttpClient.Builder okHttpClientBuilder) {
+    public sendServiceBuilder okHttpClientBuilder(final @NonNull OkHttpClient.Builder okHttpClientBuilder) {
         this.okHttpClientBuilder = okHttpClientBuilder;
         return this;
     }
@@ -118,9 +111,11 @@ public class LINEClient {
     }
 
     
-    public sendService build() {
-    	return new sendService(buildRetrofitInterface(apiEndPoint, messagesend.class));
+    public sendServiceWorking build() {
+    	//System.out.println("Builder");
+    	return new sendServiceWorking(buildRetrofitInterface(apiEndPoint, sendService.class));
     }
 
     
 }
+

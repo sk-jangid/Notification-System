@@ -1,4 +1,4 @@
 {
-	"message":"Hi {0}. Find your {1} and try to complete payment of {2} as early as possible. Your Due date is {3} ",
+	"message":"Hi {0}. Find your PayId {1} and try to complete payment of {2} as early as possible. Your Due date is {3} ",
 	"variables":["Name","payId","amount","dueDate"]
 }

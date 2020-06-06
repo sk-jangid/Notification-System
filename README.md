@@ -20,3 +20,6 @@ Input is of the type
 	}
 }
 
+
+If you want to know Your User Id for testing purpose then [click here](https://get-profile.herokuapp.com/)
+**NOTE: User Id will be different for different providers, so use that link only if you are using the same ACCESS token that is currently in the Project. No information is stored when you login via this link, this is only for making testing purposes**

@@ -15,7 +15,7 @@ public class communicationMethods {
 		super();
 		this.communicationMethods = communicationMethods;
 	}*/
-	public JSONArray getCummunicationMethods(String event)  {
+	public static JSONArray getCummunicationMethods(String event)  {
 			JSONObject communicationMethods=null;
 			try {
 				communicationMethods = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\communicationMethods.json");
