@@ -15,11 +15,19 @@ public class customerDetails {
 		JSONObject customerDetails = null;
 		try {
 			customerDetails = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\customerDetails.json");
+			//return customerDetails.getJSONObject(customerId);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			return null;
 		}
-		return customerDetails.getJSONObject(customerId);
+		//if(customerDetails)
+		//if(customer)
+		
+		if(customerDetails.has(customerId)) {
+			return customerDetails.getJSONObject(customerId);
+		}
+		return null;
 	}
 
 }

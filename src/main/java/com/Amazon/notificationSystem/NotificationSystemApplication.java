@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan({"com.Amazon.controller","com.Amazon.services","com.Amazon.services.sendMessage"})
+@ComponentScan({"com.Amazon.controller","com.Amazon.services","com.Amazon.services.clients"})
 public class NotificationSystemApplication {
 
 	public static void main(String[] args) {

@@ -22,7 +22,11 @@ public class communicationMethods {
 			} catch (IOException | ParseException e) {
 				e.printStackTrace();
 			}
-			return  (JSONArray) communicationMethods.get(event);			
+			if(communicationMethods.has(event)) {
+			return  (JSONArray) communicationMethods.get(event);
+			}else {
+				return null;
+			}
 	}		
 	
 

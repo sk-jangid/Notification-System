@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.NonNull;
-import lombok.Value;
-@Value
+
 @JsonInclude(Include.NON_NULL)
 public class LINEResponse {
 	

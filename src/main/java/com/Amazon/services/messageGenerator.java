@@ -3,29 +3,56 @@ package com.Amazon.services;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import lombok.NoArgsConstructor;
+
 
 // Service to generate Message from templates
 
 @Service
+@NoArgsConstructor
 public class messageGenerator {
 
+	
+	static String LINEpaymentDue="src\\main\\Abstracts\\LINE\\paymentDue.json";
+	static String LINEorderStatus="src\\main\\Abstracts\\LINE\\orderStatus.json";
+	String path;
+	static Map<String, String> messageTemplateMap = new HashMap<>();
+    static {
+    	messageTemplateMap.put("LINEpaymentDue",LINEpaymentDue);
+    	messageTemplateMap.put("LINEorderStatus",LINEorderStatus);
+        //operationMap.put("Alexa", alexaClient);
+  
+    }
+
+	//public static client retrieveClient(String client) {
+       
+    //}
+	
 
 	public List<String> generate(JSONObject eventDetails ,JSONObject customerInformation,String commMethod,String eventType) throws ParseException {
 		
 		
 		// template is the JSONObject to get template of that Message
 		JSONObject template = null;
-		// Get the template Message file
+		//path="";
+		path= messageTemplateMap.get(commMethod+eventType);
+		if(path==null) {
+			//System.out.println(commMethod+eventType);
+			return Collections.emptyList();
+		}
 		try {
-			template = FileAbstractHandler.getJSONObjectFromFile("src\\main\\Abstracts\\"+commMethod+"\\"+eventType+".json");
+			//System.out.println(path);
+			template = FileAbstractHandler.getJSONObjectFromFile(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return Collections.emptyList();
