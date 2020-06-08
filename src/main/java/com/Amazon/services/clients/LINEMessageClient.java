@@ -40,7 +40,7 @@ public class LINEMessageClient implements client{
 		 */
 		
 		if(message.isEmpty()) {
-			return new LINEResponse("failed","Bad Request with some input Missing");
+			return new LINEResponse("failed","Bad Request with some input Missing in event-details");
 		}
 		
 		

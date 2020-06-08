@@ -25,11 +25,13 @@ public class messageGenerator {
 	
 	static String LINEpaymentDue="src\\main\\Abstracts\\LINE\\paymentDue.json";
 	static String LINEorderStatus="src\\main\\Abstracts\\LINE\\orderStatus.json";
+	static String LINEorderCancelled="src\\main\\Abstracts\\LINE\\orderCancelled.json";
 	String path;
 	static Map<String, String> messageTemplateMap = new HashMap<>();
     static {
     	messageTemplateMap.put("LINEpaymentDue",LINEpaymentDue);
     	messageTemplateMap.put("LINEorderStatus",LINEorderStatus);
+    	messageTemplateMap.put("LINEorderCancelled",LINEorderCancelled);
         //operationMap.put("Alexa", alexaClient);
   
     }

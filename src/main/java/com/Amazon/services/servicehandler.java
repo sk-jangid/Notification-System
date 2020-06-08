@@ -30,7 +30,7 @@ public class servicehandler {
 		
 		customerInformation = customerDetails.getCustomrDetails(input.getCustomerId());
 		if(customerInformation==null) {
-			response.add("UnAuthorized Customer");
+			response.add("Unidentified Customer");
 			return response;
 		}
 		commMethods=communicationMethods.getCummunicationMethods(input.getEvent());

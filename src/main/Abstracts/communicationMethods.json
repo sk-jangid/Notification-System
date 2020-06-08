@@ -1,4 +1,5 @@
 {
 "paymentDue":["LINE","Alexa"],
-"orderStatus":["LINE","Alexa","Echo"]
+"orderStatus":["LINE","Alexa","Echo"],
+"orderCancelled":["LINE"]
 }

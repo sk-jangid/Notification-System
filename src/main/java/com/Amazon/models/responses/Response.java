@@ -16,8 +16,8 @@ public class Response {
 	public LINEResponse getLINE() {
 		return LINE;
 	}
-	public void add(LINEResponse lINE) {
-		this.LINE = lINE;
+	public void add(LINEResponse line) {
+		this.LINE = line;
 	}
 	public String getMessage() {
 		return message;
