@@ -1,4 +1,4 @@
 {
-	"message":"Hi {0}. Find your orderID {1}. you ordered a {2} from our site, which is currently unavailable in our stock. We are sorry to inform you that your order is cancelled",
+	"message":"Hi {0}. Find your orderID {1}. you ordered a {2} from our site, which is currently unavailable in our stock. We are sorry to inform you that your order is cancelled. Any money deducted will be refunded.",
 	"variables":["Name","orderId","item"]
 }
